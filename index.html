@@ -1,0 +1,152 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        select, input[type="text"], input[type="tel"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #transactionSuccess {
+            background-color: #28a745;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #countdown {
+            color: #333;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+  <center><img src="https://i.ibb.co/QNXMgCf/images-removebg-preview-1.png"width="50%"></center>
+    <div class="container">
+        <center><font color=Red size=5><strong>BR CLASSES</font>&nbsp;<img src="https://media.tenor.com/rr-muzxX2V4AAAAj/twitter-verified-check-mark.gif"width="6%"></strong></font></center>
+        <form id="paymentForm">
+            <label for="paymentMethod">Select Payment Method:</label>
+            <select id="paymentMethod">
+                <option value="qrCode">QR Code</option>
+                <option value="mobileNumber">Mobile Number</option>
+                <option value="netBanking">Net Banking</option>
+            </select>
+            <div id="qrCodeSection" class="hidden">
+                <p>Scan the QR code to make the payment.</p>
+                <img src="https://i.ibb.co/K6Pc8Zp/IMG-20240516-WA0012-removebg-preview.png" alt="QR Code"> Scan Q.R code to pay Fee for Academic Year 2024-25
+            </div>
+            <div id="mobileNumberSection" class="hidden">
+                <p>Pay through mobile number:</p>
+                <p>Banking Mobile Number: <font color=bule>+9193368 70697</font>
+                <br></br>
+                • Use this number to pay fee through any App like:- Google pay, Phone pay..etc
+                </p>
+                
+                <button type="button" onclick="showTransactionSuccess()">Submit</button>
+            </div>
+            <div id="netBankingSection" class="hidden">
+                <p>Pay through net banking:</p>
+                <p id="accountDetails">Account Holder Name: N.K Sir </p>
+                <p id="ifscDetails">IFSC Code: </p>
+                <p id="accountNumberDetails">Account Number: </p>
+                <button type="button" onclick="showTransactionSuccess()">Submit</button>
+            </div>
+            <div id="transactionSuccess" class="hidden">
+                Transaction Successful!
+                <div id="countdown"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function showTransactionSuccess() {
+            document.getElementById("transactionSuccess").classList.remove("hidden");
+            var countdown = 20;
+            var countdownElement = document.getElementById("countdown");
+            var countdownInterval = setInterval(function() {
+                countdown--;
+                countdownElement.innerText = "Redirecting in " + countdown + " seconds...";
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkj42xUAzm9kkgbhISMvC1HA53Zd_FNFvHBA&usqp=CAU"; // Replace "index.html" with your home page URL
+                }
+            }, 1000);
+        }
+
+        document.getElementById("paymentMethod").addEventListener("change", function() {
+            var paymentMethod = this.value;
+            document.getElementById("qrCodeSection").classList.add("hidden");
+            document.getElementById("mobileNumberSection").classList.add("hidden");
+            document.getElementById("netBankingSection").classList.add("hidden");
+
+            switch(paymentMethod) {
+                case "qrCode":
+                    document.getElementById("qrCodeSection").classList.remove("hidden");
+                    break;
+                case "mobileNumber":
+                    document.getElementById("mobileNumberSection").classList.remove("hidden");
+                    break;
+                case "netBanking":
+                    document.getElementById("netBankingSection").classList.remove("hidden");
+                    break;
+            }
+        });
+    </script>
+    <font color=red><b>Note</b>:-</font>&nbsp;<strong>Please wait after payment Successful we will send you own home page automatically don't press back for Safety reasons 💫</strong>
+<br></br>
+<center><img src="https://see.fontimg.com/api/renderfont4/8OaB2/eyJyIjoiZnMiLCJoIjozOCwidyI6MjAwMCwiZnMiOjE5LCJmZ2MiOiIjRTczNTRCIiwiYmdjIjoiI0ZGRkZGRiIsInQiOjF9/U2F0dHUgdGVjaG5vbG9naWVzIA/resifen.png"width="50%"></center>
+
+</body>
+</html>
