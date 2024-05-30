@@ -1,0 +1,105 @@
+<!DOCTYPE html>   
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .payment-option {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .payment-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-option img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .payment-option p {
+            margin: 0;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Acadmic Fee Payment</h1><br>
+        <center><font color=red><strong>Brainstorm classes </strong></center>
+        <p>Please complete your payment to given options</p>
+        <p>Wait after payment successful we will forward on Success page<br>~Thanks (Sattu technologies)</p>
+        <p><font color=blue><b>Dear ,<br>Parents/Students Please select below option for make Acadmic fee payment</font></b></p>
+        <div class="payment-options">
+            <div class="payment-option" onclick="openPaymentApp('Google Pay', 'upi://pay?pa=9336870697@axl&pn=TutionFee&am=50+2&cu=INR')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd80fk3N3gC_GQ4Nq5aKNB1wgSWBBSVAXijQ&usqp=CAU" alt="Google Pay">
+                <p>Google Pay</p>
+            </div>
+            <div class="payment-option" onclick="openPaymentApp('PhonePe', 'upi://pay?pa=sy6394482-1@oksbi&pn=Tutionfee&am=15+2&cu=INR')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa5q6sx1VBwoChYbiKQAw5E-rxE-MGTKfkOgax9pRo95IW3GCQO3H28Xg&s=10" alt="PhonePe">
+                <p>PhonePe</p>
+            </div>
+            <div class="payment-option" onclick="openPaymentApp('Amazon Pay', 'upi://pay?pa= 9336870697@axl&pn=Tutionfee&am=15+2&cu=INR')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwapoXfnv_4C2mkqjIHN4r1YmdpVj3A_0kWUk3aIKSYQ&s" alt="Amazon Pay">
+                <p>Amazon Pay</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openPaymentApp(appName, url) {
+            window.location.href = url;
+            alert(`Redirecting to ${appName}...`);
+            // Simulate payment success
+            setTimeout(() => {
+                alert('Dear , Students if your already pay current session fee then please show your transaction id to Tution Centre or address for conformation of fee payment (Thank You ~N.K sir)');
+                window.location.href = 'https://onlinebrain.rf.gd/';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
