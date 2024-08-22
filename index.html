@@ -1,104 +1,207 @@
-<!DOCTYPE html>   
+<!DOCTYPE html>  
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page</title>
+    <meta name="viewport" content="width=1024"> <!-- Fixed viewport width -->
+    <title>Brainstorm Fee Details</title>
     <style>
+        /* CSS styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
         }
 
         .container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
         }
 
         h1 {
-            color: #1a1a1a;
-            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
         }
 
-        p {
-            color: #666;
-            margin-bottom: 20px;
+        select {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
         }
 
-        .payment-options {
+        #detailsSection {
             display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
+            justify-content: center;
         }
 
-        .payment-option {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
+        #feeTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #feeTable th, #feeTable td {
             border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #feeTable th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .download-button {
+            background-color: #1E90FF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 4px;
         }
 
-        .payment-option:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .payment-option img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 10px;
-        }
-
-        .payment-option p {
-            margin: 0;
-            font-weight: bold;
-            color: #1a1a1a;
+        .download-button:hover {
+            background-color: #007BFF;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Acadmic Fee Payment</h1><br>
-        <center><font color=red><strong>Brainstorm classes </strong></center>
-        <p>Please complete your payment to given options</p>
-        <p>Wait after payment successful we will forward on Success page<br>~Thanks (Sattu technologies)</p>
-        <p><font color=blue><b>Dear ,<br>Parents/Students Please select below option for make Acadmic fee payment</font></b></p>
-        <div class="payment-options">
-            <div class="payment-option" onclick="openPaymentApp('Google Pay', 'upi://pay?pa=9336870697@axl&pn=TutionFee&am=50+2&cu=INR')">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd80fk3N3gC_GQ4Nq5aKNB1wgSWBBSVAXijQ&usqp=CAU" alt="Google Pay">
-                <p>Google Pay</p>
-            </div>
-            <div class="payment-option" onclick="openPaymentApp('PhonePe', 'upi://pay?pa=sy6394482-1@oksbi&pn=Tutionfee&am=15+2&cu=INR')">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa5q6sx1VBwoChYbiKQAw5E-rxE-MGTKfkOgax9pRo95IW3GCQO3H28Xg&s=10" alt="PhonePe">
-                <p>PhonePe</p>
-            </div>
-            <div class="payment-option" onclick="openPaymentApp('Amazon Pay', 'upi://pay?pa= 9336870697@axl&pn=Tutionfee&am=15+2&cu=INR')">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwapoXfnv_4C2mkqjIHN4r1YmdpVj3A_0kWUk3aIKSYQ&s" alt="Amazon Pay">
-                <p>Amazon Pay</p>
-            </div>
+        <center><h1><font color="red">Brainstorm classes</font></h1></center> 
+        <h1>Fee Details 2024</h1>
+        <select id="classSelect" onchange="showDetails()">
+            <option value="">Select Class</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+        </select>
+
+        <div id="detailsSection">
+            <table id="feeTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Fee Paid Month</th>
+                        <th>Fee Paid</th>
+                        <th>Mode of Payment</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Fee details will be inserted here by JavaScript -->
+                </tbody>
+            </table>
         </div>
     </div>
+
     <script>
-        function openPaymentApp(appName, url) {
-            window.location.href = url;
-            alert(`Redirecting to ${appName}...`);
-            // Simulate payment success
-            setTimeout(() => {
-                alert('Dear , Students if your already pay current session fee then please show your transaction id to Tution Centre or address for conformation of fee payment (Thank You ~N.K sir)');
-                window.location.href = 'https://onlinebrain.rf.gd/';
-            }, 2000);
+        // JavaScript code
+        const feeData = {
+            '9': [
+                { name: 'John Doe', feePaidMonth: '1 July to 1 August 2024', feePaid: '$500', modeOfPayment: 'Cash' },
+                { name: 'Jane Smith', feePaidMonth: '1 July to 1 August 2024', feePaid: '$500', modeOfPayment: 'Online' }
+            ],
+            '10': [
+                { name: 'Alice Johnson', feePaidMonth: '1 August to 1 September 2024', feePaid: '$550', modeOfPayment: 'Cash' },
+                { name: 'Bob Brown', feePaidMonth: '1 August to 1 September 2024', feePaid: '$550', modeOfPayment: 'Online' }
+            ],
+            '11': [
+                { name: 'Charlie Davis', feePaidMonth: '1 September to 1 October 2024', feePaid: '$600', modeOfPayment: 'Online' },
+                { name: 'Diana Wilson', feePaidMonth: '1 September to 1 October 2024', feePaid: '$600', modeOfPayment: 'Cash' }
+            ],
+            '12': [
+                { name: 'Satyam Singh Yadav', feePaidMonth: '1 July to 1 August 2024', feePaid: '1000', modeOfPayment: 'Cash' },
+                { name: 'Aman Yadav', feePaidMonth: '--', feePaid: '--', modeOfPayment: 'Not Paid' },
+                { name: 'Rehan', feePaidMonth: '-----', feePaid: '', modeOfPayment: 'Not Paid' },
+                { name: 'New Student', feePaidMonth: '--', feePaid: '--', modeOfPayment: 'Not Paid' }
+            ]
+        };
+
+        function downloadReceipt(name, feePaidMonth, feePaid, modeOfPayment) {
+            // Current date and time
+            const now = new Date();
+            const dateTime = now.toLocaleString();
+
+            // Construct the receipt content as plain text
+            const receiptContent = `
+====================================================
+                       Sold BY:
+                    [Brainstorm Classes ]
+====================================================
+
+Fee Receipt
+-----------
+
+Sold To: ${name}
+Fee Paid Month: ${feePaidMonth}
+Fee Paid: ${feePaid}
+Mode of Payment: ${modeOfPayment}
+
+Date & Time: ${dateTime}
+
+Non-Refundable Policy:
+- All payments are non-refundable.
+- Please keep this receipt for your records.
+
+Authorized Signature:
+N.K Sir (CEO & Managing Director)
+====================================================
+Thank you for your payment!
+====================================================
+`;
+
+            // Create a Blob from the receipt content
+            const blob = new Blob([receiptContent], { type: 'text/plain' });
+            
+            // Create a link element to trigger the download
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'receipt.txt';
+            
+            // Append the link to the body (not visible)
+            document.body.appendChild(link);
+            
+            // Programmatically click the link to trigger the download
+            link.click();
+            
+            // Clean up
+            document.body.removeChild(link);
+        }
+
+        function showDetails() {
+            const classSelect = document.getElementById('classSelect');
+            const selectedClass = classSelect.value;
+            const detailsSection = document.getElementById('feeTable').getElementsByTagName('tbody')[0];
+
+            // Clear previous details
+            detailsSection.innerHTML = '';
+
+            if (selectedClass && feeData[selectedClass]) {
+                feeData[selectedClass].forEach(student => {
+                    const row = detailsSection.insertRow();
+                    row.insertCell(0).innerText = student.name;
+                    row.insertCell(1).innerText = student.feePaidMonth;
+                    row.insertCell(2).innerText = student.feePaid;
+                    row.insertCell(3).innerText = student.modeOfPayment;
+
+                    const actionCell = row.insertCell(4);
+                    const downloadButton = document.createElement('button');
+                    downloadButton.className = 'download-button';
+                    downloadButton.innerText = 'Download Receipt';
+                    downloadButton.onclick = () => downloadReceipt(student.name, student.feePaidMonth, student.feePaid, student.modeOfPayment);
+                    actionCell.appendChild(downloadButton);
+                });
+            }
         }
     </script>
 </body>
